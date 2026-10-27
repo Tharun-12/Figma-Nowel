@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ivory text-charcoal font-sans antialiased;
+    font-feature-settings: "kern";
+  }
+
+  h1, h2, h3, h4, h5 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    @apply bg-forest/20 text-forest;
+  }
+
+  /* Refined scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-sand-100;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sage-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-sage-500;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
+  }
+
+  .container-prose {
+    @apply mx-auto w-full max-w-3xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs uppercase tracking-wider-2 font-medium text-forest;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-forest px-7 py-3.5 text-sm font-medium tracking-wide text-ivory transition-all duration-300 hover:bg-forest-700 hover:shadow-lg hover:shadow-forest/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-forest/30 bg-transparent px-7 py-3.5 text-sm font-medium tracking-wide text-forest transition-all duration-300 hover:border-forest hover:bg-forest hover:text-ivory focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-forest transition-colors hover:text-earth-600;
+  }
+
+  .card-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-forest-900/70 via-forest-900/10 to-transparent;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
