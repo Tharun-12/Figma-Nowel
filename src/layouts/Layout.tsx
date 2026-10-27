@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
+import Navbar  from '@/components/Navbar';
+import Footer  from '@/components/Footer';
 import { BackToTop } from '@/components/BackToTop';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 import { CookieConsent } from '@/components/CookieConsent';
