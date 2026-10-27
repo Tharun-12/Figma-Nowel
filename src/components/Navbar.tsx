@@ -1161,7 +1161,7 @@ const Navbar: React.FC = () => {
 
   // --- Dropdown Data (Kept your original data intact) ---
   const aboutUsDropdown = [
-    { name: 'Nowal NatureCare', path: '/Ourstory', icon: <Leaf className="w-4 h-4" />, description: 'Our holistic healing philosophy' },
+    { name: 'Nowal NatureCare', path: '/our-story', icon: <Leaf className="w-4 h-4" />, description: 'Our holistic healing philosophy' },
     { name: 'About Founder', path: '/experience#mantra', icon: <User className="w-4 h-4" />, description: 'Meet our visionary leader' },
     { name: 'Healing Team', path: '/healing-team', icon: <Users className="w-4 h-4" />, description: 'Our expert practitioners' },
     { name: 'Daily Routine', path: '/dincharya', icon: <Clock className="w-4 h-4" />, description: 'Structured wellness schedule' },

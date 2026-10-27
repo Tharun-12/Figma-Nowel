@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
@@ -31,18 +30,9 @@ export function ContactForm() {
   const onSubmit = async (data: FormData) => {
     setSubmitStatus('loading');
     try {
-      const { error } = await supabase.from('enquiries').insert({
-        name: data.name,
-        email: data.email,
-        phone: data.phone || null,
-        city: data.city || null,
-        enquiry_type: data.enquiryType,
-        preferred_dates: data.preferredDates || null,
-        number_of_guests: data.numberOfGuests ? parseInt(data.numberOfGuests, 10) : null,
-        message: data.message,
-        consent: data.consent,
-      });
-      if (error) throw error;
+      // TODO: Replace with your own API endpoint / form service
+      // Example: await fetch('/api/enquiries', { method: 'POST', body: JSON.stringify(data) });
+      await new Promise((resolve) => setTimeout(resolve, 500));
       setSubmitStatus('success');
       reset();
     } catch {
