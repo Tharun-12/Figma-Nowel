@@ -8,6 +8,7 @@ import { ROOMS } from '@/data/content';
 import { IMAGES } from '@/data/images';
 import { useDocumentTitle } from '@/hooks/useScrollToTop';
 import { Utensils, Waves, Leaf, Dumbbell } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 export function Accommodation() {
   useDocumentTitle('Accommodation — Nowal NatureCare', 'Explore our Garden Rooms, Wellness Suites, and Forest Cottages — each designed for restful solitude in harmony with nature.');

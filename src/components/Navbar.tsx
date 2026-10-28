@@ -1185,7 +1185,7 @@ const Navbar: React.FC = () => {
   ];
 
   const accommodationsDropdown = [
-    { name: 'Accommodation Details', path: '/accomadation', icon: <Hotel className="w-4 h-4" />, description: 'Room options & amenities' },
+    { name: 'Accommodation Details', path: '/accommodation', icon: <Hotel className="w-4 h-4" />, description: 'Room options & amenities' },
     { name: 'Accommodation Guidelines', path: '/guidliness', icon: <BookOpen className="w-4 h-4" />, description: 'Stay information & policies' },
   ];
 
