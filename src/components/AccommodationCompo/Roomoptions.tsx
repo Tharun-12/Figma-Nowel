@@ -27,7 +27,7 @@ interface Room {
   images: string[];
 }
 
-// Replace the image paths with your own (put files in /public/rooms/...)
+// Add more image URLs to any room's `images` array to get a multi-photo carousel with dots.
 const ROOMS: Room[] = [
   {
     id: "suite",
@@ -35,7 +35,9 @@ const ROOMS: Room[] = [
     title: "Suite 2 Bed Room",
     description:
       "“Experience luxury and comfort in our spacious 2-bedroom suite designed for families and groups.”",
-    images: ["https://i.pinimg.com/1200x/48/19/37/48193717b7401d6648fd8e3b6ab3c1bd.jpg"],
+    images: [
+      "https://i.pinimg.com/1200x/48/19/37/48193717b7401d6648fd8e3b6ab3c1bd.jpg",
+    ],
   },
   {
     id: "cottage",
@@ -43,7 +45,9 @@ const ROOMS: Room[] = [
     title: "Cottage Room with Garden & Plunge Pool",
     description:
       "“A private cottage opening onto a garden and your own plunge pool, made for slow, quiet stays.”",
-    images: ["https://i.pinimg.com/736x/4f/9d/fa/4f9dfa24c637f524d0e75a72086b392a.jpg"],
+    images: [
+      "https://i.pinimg.com/736x/4f/9d/fa/4f9dfa24c637f524d0e75a72086b392a.jpg",
+    ],
   },
   {
     id: "king",
@@ -51,14 +55,15 @@ const ROOMS: Room[] = [
     title: "Cottage Room (King Bed)",
     description:
       "“A warm, well-appointed cottage with a king bed, perfect for couples looking to unwind.”",
-    images: ["https://i.pinimg.com/736x/31/3b/f1/313bf16ac23ead4de2fe183a05bb9e93.jpg"],
+    images: [
+      "https://i.pinimg.com/736x/31/3b/f1/313bf16ac23ead4de2fe183a05bb9e93.jpg",
+    ],
   },
 ];
 
 interface Amenity {
   label: string;
   icon: LucideIcon;
-  /** icon colour: green or gold, as in the design */
   tone?: "green" | "gold";
 }
 
@@ -79,7 +84,6 @@ const AMENITIES: Amenity[] = [
 
 /* --------------------------- Small parts --------------------------- */
 
-/** Gold line with a small diamond in the middle, shown under headings */
 const OrnamentDivider = () => (
   <div className="mx-auto mt-1 flex items-center justify-center gap-2" aria-hidden="true">
     <span className="h-px w-10 bg-[#d9b36c]/70 sm:w-14" />
@@ -88,7 +92,6 @@ const OrnamentDivider = () => (
   </div>
 );
 
-/** Decorative leaf, used in the corners */
 const Leaf2 = ({ className = "" }: { className?: string }) => (
   <svg
     viewBox="0 0 100 160"
@@ -127,8 +130,24 @@ export default function RoomOptions() {
     setActiveRoom(i);
     setSlide(0);
   };
-  const prev = () => setSlide((s) => (s - 1 + total) % total);
-  const next = () => setSlide((s) => (s + 1) % total);
+
+  // With several images: move through photos.
+  // With a single image: move to the previous / next room instead.
+  const prev = () => {
+    if (total > 1) {
+      setSlide((s) => (s - 1 + total) % total);
+    } else {
+      selectRoom((activeRoom - 1 + ROOMS.length) % ROOMS.length);
+    }
+  };
+
+  const next = () => {
+    if (total > 1) {
+      setSlide((s) => (s + 1) % total);
+    } else {
+      selectRoom((activeRoom + 1) % ROOMS.length);
+    }
+  };
 
   return (
     <section className="relative w-full overflow-hidden bg-[#faf7f0] font-['Lora',serif] text-[#0f4a33]">
@@ -141,7 +160,7 @@ export default function RoomOptions() {
         </h2>
         <OrnamentDivider />
 
-        {/* Tabs: horizontal scroll on mobile, centered wrap on larger screens */}
+        {/* Tabs */}
         <div
           role="tablist"
           aria-label="Room types"
@@ -181,6 +200,7 @@ export default function RoomOptions() {
                   src={src}
                   alt={`${room.title} – photo ${i + 1}`}
                   loading={i === 0 ? "eager" : "lazy"}
+                  referrerPolicy="no-referrer"
                   className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
                     i === slide ? "opacity-100" : "opacity-0"
                   }`}
@@ -188,33 +208,38 @@ export default function RoomOptions() {
               ))}
 
               <button
+                type="button"
                 onClick={prev}
-                aria-label="Previous photo"
-                className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-[#0f5a3c] text-white shadow-md transition hover:bg-[#0c4a31] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] sm:h-10 sm:w-10"
+                aria-label="Previous"
+                className="absolute left-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-[#0f5a3c] text-white shadow-md transition hover:bg-[#0c4a31] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] sm:h-10 sm:w-10"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
+                type="button"
                 onClick={next}
-                aria-label="Next photo"
-                className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-[#0f5a3c] text-white shadow-md transition hover:bg-[#0c4a31] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] sm:h-10 sm:w-10"
+                aria-label="Next"
+                className="absolute right-3 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-[#0f5a3c] text-white shadow-md transition hover:bg-[#0c4a31] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] sm:h-10 sm:w-10"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
 
-              <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
-                {room.images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setSlide(i)}
-                    aria-label={`Go to photo ${i + 1}`}
-                    aria-current={i === slide}
-                    className={`h-2.5 w-2.5 rounded-full transition-colors ${
-                      i === slide ? "bg-[#0f5a3c] ring-1 ring-white" : "bg-white"
-                    }`}
-                  />
-                ))}
-              </div>
+              {total > 1 && (
+                <div className="absolute bottom-3 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+                  {room.images.map((_, i) => (
+                    <button
+                      type="button"
+                      key={i}
+                      onClick={() => setSlide(i)}
+                      aria-label={`Go to photo ${i + 1}`}
+                      aria-current={i === slide}
+                      className={`h-2.5 w-2.5 rounded-full transition-colors ${
+                        i === slide ? "bg-[#0f5a3c] ring-1 ring-white" : "bg-white"
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Text */}
@@ -224,7 +249,10 @@ export default function RoomOptions() {
               <p className="mt-3 max-w-sm text-sm leading-relaxed text-[#2b3b33] sm:text-[15px]">
                 {room.description}
               </p>
-              <button className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#0f5a3c] px-7 py-3 text-base font-semibold text-white shadow-[0_3px_0_#0a3d29,0_6px_14px_rgba(15,90,60,0.35)] transition hover:bg-[#0c4a31] active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] focus-visible:ring-offset-2">
+              <button
+                type="button"
+                className="mt-6 inline-flex items-center gap-2 rounded-lg bg-[#0f5a3c] px-7 py-3 text-base font-semibold text-white shadow-[0_3px_0_#0a3d29,0_6px_14px_rgba(15,90,60,0.35)] transition hover:bg-[#0c4a31] active:translate-y-px focus:outline-none focus-visible:ring-2 focus-visible:ring-[#d9b36c] focus-visible:ring-offset-2"
+              >
                 Book Now
                 <ChevronRight className="h-4 w-4" />
               </button>

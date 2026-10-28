@@ -1,5 +1,6 @@
 
 import AccommodationHero from '@/components/AccommodationCompo/AccommodationHero';
+import NowalWelcome from '@/components/AccommodationCompo/Nowalwelcome';
 import RoomOptions from '@/components/AccommodationCompo/Roomoptions';
 
 export function Accommodation() {
@@ -9,6 +10,7 @@ export function Accommodation() {
     <>
       <AccommodationHero />
       <RoomOptions />
+      <NowalWelcome />
     </>
   );
 }
