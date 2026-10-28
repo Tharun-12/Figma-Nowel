@@ -20,7 +20,7 @@ import { Testimonials } from '@/pages/Testimonials';
 import { Blog } from '@/pages/Blog';
 import { BlogDetail } from '@/pages/BlogDetail';
 import { FAQs } from '@/pages/FAQ';
-import { Contact } from '@/pages/Contact';
+import Contact  from '@/pages/Contact';
 import { PlanYourRetreat } from '@/pages/PlanYourRetreat';
 import { PrivacyPolicy } from '@/pages/PrivacyPolicy';
 import { TermsAndConditions } from '@/pages/TermsandConditions';

@@ -1337,7 +1337,7 @@ const Navbar: React.FC = () => {
                 </div>
               </div>
 
-              <NavLink to="/image" className={navLinkClass} onClick={closeAllDropdowns}>
+              <NavLink to="/gallery" className={navLinkClass} onClick={closeAllDropdowns}>
                 Gallery
               </NavLink>
               
@@ -1423,7 +1423,7 @@ const Navbar: React.FC = () => {
 
              {/* Other Mobile Links */}
              <NavLink to="/accomadation" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Accommodations</NavLink>
-             <NavLink to="/image" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Gallery</NavLink>
+             <NavLink to="/gallery" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Gallery</NavLink>
              <NavLink to="/blog" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Blog</NavLink>
              <NavLink to="/wedding" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Celebrations</NavLink>
              <NavLink to="/contact" className="block px-3 py-3 text-gray-700 hover:bg-[#F3F8F4] rounded-md font-medium" onClick={closeAllDropdowns}>Contact</NavLink>
