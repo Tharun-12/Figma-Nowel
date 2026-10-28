@@ -1175,7 +1175,7 @@ const Navbar: React.FC = () => {
       description: 'Comprehensive wellness packages',
       submenu: [
         { name: 'Naturopathy Wonders', path: '/narutopathy', icon: <Leaf className="w-4 h-4" /> },
-        { name: 'Yoga & Meditation', path: '/yoga', icon: <Activity className="w-4 h-4" /> },
+        { name: 'Yoga & Meditation', path: '/yoga-meditation', icon: <Activity className="w-4 h-4" /> },
         { name: 'Diet & Nutrition', path: '/diet', icon: <Utensils className="w-4 h-4" /> },
         { name: 'Ayurveda', path: '/ayurveda', icon: <Gem className="w-4 h-4" /> },
         { name: 'Acupuncture', path: '/Holistictherapy', icon: <Shield className="w-4 h-4" /> },
